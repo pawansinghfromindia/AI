@@ -213,6 +213,10 @@ and spinal cord injuries.
 Early modest success of ML Model was : Google started using Statistical Model a lot in their systems, in their a lot of enterprises 
 based solution like Email Spam filtering, recommendation systems.
 
+Earlier phase, this was open field, People excited for that one day, we will solve all the agony(struggle) of human will, something better and practical. e.g. : A machine like ourself so that we don't have to do the ugly work, we can just sit and relax and make this machine better.
+
+Still bottleneck with this system, couldn't have conversation with us. It is not exactly relying on **Rules** but **Statistical Data**. It works with lower accuracy  but It can't form its own sentences or articulate something for us. It only understand ***high ranking keywords*** based on Statistical data.
+
 
 | What Worked                             | The Bottleneck                                  |
 |-----------------------------------------|-------------------------------------------------|
@@ -235,6 +239,8 @@ Classify Something but ***not with great accuracy*** But at least we have better
 
 <br/>
 
+It was earlier internet era 1970-80 and data are not available online to feed the machines. So, Machines were so dumb. So they needed a lot of computer instructions.
+
 `Bottleneck 01` : **Not enough data**
 - Machine Learning requires massive amounts of examples to learn patterns effectively.
 - Where do you get millions of labeled examples?
@@ -244,6 +250,9 @@ Classify Something but ***not with great accuracy*** But at least we have better
 - Learning from data requires intense mathematical calculations.
 - Computers were too slow for deep training.
 - Training on millions of examples would take years.
+
+But people were hopeful and raising funds for it, betting on something. But see today a lot of things changed. <br/>
+Lacking a lot of things like Compute power(CPUs for processing), we only have data.
 
 </details>
 
@@ -258,7 +267,11 @@ Researchers promised human-level AI in 20 years. When they failed to deliver, fu
 `1980s–90s Winter` : **The Expert System Bust** <br/>
 Expert systems were supposed to revolutionize business, but they were too brittle for the real world. Funding vanished again.
 
-> The field became a joke. Saying you worked on 'AI' was career suicide.
+> Buzz of AI is dying field, The field became a joke. Saying you worked on 'AI' was career suicide.
+
+A lot of funding pulled off from AI Startup companies which were trying to make statistical model better. No Data, No compute power for large datasets.
+
+But after 2012, Internet blown off, Data content online spreading and freely available, Nvedia making GPUs for Gaming which were perfect for Math at very fast speed. So compute is also available. 
 
 </details>
 
@@ -278,6 +291,8 @@ Graphics cards, built for gaming, turned out to be perfect for the math ML needs
 Researchers finally cracked how to train much deeper and more complex neural networks.
 
 > All three ingredients converged around 2012.
+
+So from 1970-80s to till 2012 a lot of problems were solved. We have **Data**, we have **Compute** and we have **algorithms** which can make machine intelligent. So, We bet on it and next what happened was everything is infront of us.
 
 </details>
 
