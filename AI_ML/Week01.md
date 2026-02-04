@@ -345,7 +345,7 @@ Computers don't understand **words**. They understand **numbers**.
 
 The challenge is: how do we turn a word into a list of numbers that captures its **meaning**?
 
-**Word Embeddings (The "Secret Sauce")**
+### **Word Embeddings (The "Secret Sauce")**
 
 How do we turn a word like "Apple" into a number that captures its meaning?
 
@@ -355,7 +355,8 @@ Instead of one number, we give each word a list of numbers (a vector).
 
 Each number represents a specific "dimension" of meaning.
 
-**Dimensions of Meaning**
+### **Dimensions of Meaning**
+
 | Word | Royalty | Gender (M) | Edibility |
 |------|---------|------------|-----------|
 | King | 0.98    | 0.95       |  0.01     |
@@ -365,24 +366,24 @@ Each number represents a specific "dimension" of meaning.
 - "King" and "Queen" have similar numbers for royalty but vastly different values for gender.
 - This is how machines represent concepts as data.
 
-**Words as Positions in Space**
+### **Words as Positions in Space**
 - If a word is a list of numbers, it's a point on a map. **Similar words are close together**, while different words are far apart.
 
 <img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/f758a945-14f2-4e6f-a027-c80deb03cdc0" />
 
 
-**Visualizing Word Embeddings**
+### **Visualizing Word Embeddings**
 - Similar words are placed close together in a multi-dimensional space.
 - Proximity indicates shared meaning.
 
 <img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/abf037a2-e23c-4775-95d7-8230fb8eac27" />
 
-**The Magic of Embeddings - Word Math**
-`King − Man + Woman = Queen`
-`Paris − France + Italy = Rome`
-`Walking − Walk + Swim = Swimming`
+### **The Magic of Embeddings - Word Math**
+`King − Man + Woman = Queen` <br/>
+`Paris − France + Italy = Rome`  <br/>
+`Walking − Walk + Swim = Swimming`  <br/>
 
-**Can Embeddings Solve Our Earlier Problems?**
+### **Can Embeddings Solve Our Earlier Problems?**
 
 "I went to the **bank** to deposit cash" <br/>
 "I sat on the **bank** of the river"
@@ -424,24 +425,180 @@ RNNs struggle with long sentences because they process information linearly and 
 
 <br/>
 
-`What we had` :
-
-**Word embeddings**
-
-**Sequence models (RNNs)**
-
-**Tons of internet data**
-
-**Powerful GPUs**
+`What we had` : **Word embeddings** | **Sequence models (RNNs)** | **Tons of internet data** | **Powerful GPUs**
 
 `The Problem` : 
 
 > **The Word-by-Word Bottleneck** <br/>
 > Processing text sequentially was slow and models still "forgot" the beginning of long sentences.
 
+
+What if there was a better way?
+
 </details>
 
 
+<details>
+  <summary> <b>The Transformer Idea</b> </summary>
+
+<br/>
+
+`The Old Way` : **Sequential** <br/>
+Process words one by one, like reading a book from start to finish.
+
+`The New Way` : **Simultaneous** <br/>
+Look at every word in the sentence at the same time.
+
+> **The Secret: Attention** <br/>
+> The model "attends" to the most relevant words, no matter how far apart they are.
+
+</details>
+
+<details>
+  <summary> <b> Attention in Action </b> </summary>
+
+<br/>
+
+`Processing the word "it"` : The **animal** didn't cross the street because **it** was too tired.
+
+When the model looks at the word **"it"**, the attention mechanism tells it to pay the most attention to **"animal"**.
+
+This is how the model "knows" what the pronoun refers to, building a context-aware representation of every word.
+
+**Same Structure, Different Attention**
+
+`Scenario A` : The **animal** didn't cross the street because **it** was too **tired**.
+
+`Scenario B` : The **animal** didn't cross the **street** because **it** was too **wide**.
+
+By changing just one word (**tired** vs **wide**), the model's attention shifts, correctly identifying what "it" refers to in each context.
+
+**Why Attention Is Powerful**
+
+`1. No Forgetting` : **More Memory** <br/>
+Every word in a sentence "sees" every other word simultaneously, no matter how far apart they are.
+
+`2. Speed` : **Parallel Processing** <br/>
+Unlike RNNs that read word-by-word, Transformers process all words at once, making training incredibly fast.
+
+`3. Context` : **Deep Understanding** <br/>
+The model builds a mathematical map of how every word relates to every other word in the specific context.
+
+</details>
+
+<details>
+  <summary> <b>The Transformer</b> </summary>
+<br/>
+
+**An architecture built entirely on the mechanism of <ins>attention</ins>**.
+
+`Trait 01` : **No recurrence. No convolution. Just attention.**
+
+`Trait 02` : **The foundation of all modern Large Language Models (LLMs).**
+
+`Trait 03` : **Enables massive scaling of data and compute.**
+
+</details>
+
+<details>
+  <summary> <b>How ChatGPT Works (Simplified)</b>? : <b>Transformer + Internet Data + Prediction</b> </summary>
+
+<br/>
+
+`01. Architecture` : **The Engine** <br/>
+A massive neural network built entirely on the Attention mechanism we just explored.
+
+`02. Architecture` : **The Knowledge** <br/>
+Trillions of words from books, articles, and the entire public internet.
+
+`03. Architecture` : **The Task** <br/>
+A simple goal: given a sequence of words, predict the most likely next word.
+
+</details>
+
+<details>
+  <summary> <b>Why "Predict the Next Word" Creates Understanding</b> </summary>
+
+<br/>
+
+**Grammar & Syntax** <br/>
+Predicting the next word requires the model to internalize language structure and rules.
+
+**Factual Knowledge** <br/>
+Correct predictions rely on learned factual relations between concepts.
+
+**Logic & Reasoning** <br/>
+Following a chain of reasoning lets the model anticipate the appropriate continuation.
+
+### **How It Generates Text**
+
+`Step 01` : **The**
+
+`Step 02` : The **quick**
+
+`Step 03` : The quick **brown**
+
+`Step 04` : The quick brown **fox...**
+
+Generation is an **iterative loop**. <br/>
+Each predicted word is added back to the input, and the model predicts the next word based on the updated context.
+
+### **Let's See It Again**
+
+Revisiting the demo with a new perspective.
+
+`Look For 01` : The iterative, word-by-word prediction process.
+
+`Look For 02` : How attention builds deep context awareness.
+
+`Look For 03` : How "reasoning" emerges from simple prediction.
+
+### The Unexpected Discovery: Bigger = Smarter
+
+`01. Data` : **More Tokens** <br/>
+Scaling from millions to trillions of words of training data.
+
+`02. Parameters` : **More Size** <br/>
+Scaling from millions to hundreds of billions of internal connections.
+
+`03. Compute` : **More Power** <br/>
+Scaling from days to months of training on thousands of GPUs.
+
+> **The Result: Emergent Capabilities. Reasoning, coding, and logic appear spontaneously as models get larger.**
+
+</details>
+
+<details>
+  <summary> <b>Foundation Models</b> </summary>
+
+<br/>
+
+`The Old Paradigm` : **Task-Specific AI**
+- Model A: Translation
+- Model B: Summarization
+- Model C: Sentiment Analysis
+
+`The New Paradigm` : **General-Purpose AI**
+- One massive model trained on everything, capable of performing any language task through prompting.
+
+**The "Foundation" is the base knowledge. We no longer build tools from scratch; we build on top of these giants.**
+
+</details>
 
 
+<details>
+  <summary> <b>Where We Are (2024-2025)</b> </summary>
 
+<br/>
+
+`Trend 01` : **Multimodality** <br/>
+AI is no longer just text. It can see images, hear voices, and speak back in real-time.
+
+`Trend 02` : **Reasoning** <br/>
+New models are designed to "think" before they speak, solving complex math and logic problems.
+
+`Trend 03` : **Agents** <br/>
+The shift from chatbots to agents that can use tools, browse the web, and complete multi-step tasks.
+
+
+</details>
