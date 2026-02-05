@@ -298,6 +298,32 @@ So from 1970-80s to till 2012 a lot of problems were solved. We have **Data**, w
 
 ## Now Let's Go Deep on One Problem
 
+<details>
+  <summary> Before Transformer, CNN - Convolutional Neural Networks</summary>
+  
+Before **transformer** also we have some successes not as as after transformer but still enough to lead us to transformer. <br/>
+After **transformer**, Machine were started able to understand things contextually. <br/>
+Before **transformer**, we had something known as **CNN**.
+
+**CNN**
+- Convolutional Neural Networks (CNNs) were the dominant architecture in computer vision for over a decade, serving as the foundation for most image recognition, classification, and detection tasks.
+- It is a mathematical function basically help us convoluting a matrix. It was able to understand images. So, what happened was Image Field boomed.
+- **Luis von Ahn** is the primary inventor of the CAPTCHA solution : we can easily pass an image of captcha and get the desired text out of it.
+
+Images were working but again there were no context of it.<br/>
+Like if we pass an image to a CNN, we will not get the description bcuz images do not have any description (context). <br/>
+It was just a classification and that's why that is not the real intelligence.
+
+- What it actually was, we gave millions of Images and categorized them in 10 classes/buckets. And ask model that your goal is to classify these images to these buckets.
+
+People started to research more on languages and images to see if we can fit a mathematical formula of convulation to make much reliable and somehow pass the context to it. Later all the stuffs happened what we see.
+
+"Attention Is All You Need" paper, published in 2017 by Ashish Vaswani and colleagues at Google Brain, introduced the Transformer architecture. That basically gives us Transformer. But that's not the whole thing. The paper only give the architecture of transformer but main part of whole architecture is something we call **Attention**.
+
+The core idea of attention was given near back into different paper from **Bahdanau Attention** which laid the foundation for modern architectures like Transformers, which further refined attention mechanisms.  It is considered one of the most influential ideas in deep learning over the past decade. 
+
+</details>
+
 We'll use language understanding as our lens.
 
 <details>
@@ -313,6 +339,15 @@ We'll use language understanding as our lens.
 A single sentence can have multiple valid interpretations, making it one of the hardest problems in AI.
 
 > "Fast-tracking the AI course" and "Fast-tracking the course of AI"
+
+As we human we got so much confused by just channging order of one word, imagine how much machine would get confused bcuz they don't even know words they just understand numbers.
+
+So, started working with languages bcuz we understand how hard it is to work for machines. The field is knows as **[NLP](https://www.ibm.com/think/topics/natural-language-processing)**.
+
+**NLP = Natural Language Processing** <br/>
+How intelligence work in Languages? <br/>
+Basically It starts from How computers were, how languages were, first statistical model, anogram models. <br/>
+We go throughly through 4 different aspects for it like How it ended up Transformer. <br/>
 
 </details>
 
@@ -354,6 +389,17 @@ The machine could predict the next word based on frequency, but it had no concep
 
 <br/>
 
+We understand that words are very hard for machines to understand. Machines literally do not know something which is known as word. Bcuz Machines works generally with different pointers and high precision numbers. So words literally make no sense for them.
+
+But what if we can somehow transform these **words or different tokens** into some kind of numbers this was the first break through.
+
+We can transform words to different types of vector, and vectors are just list of different numbers.
+
+Now what will happen is Apple is completely different for APPLE as fruit and APPLE as a company or lable just based on the numbers.
+
+How can we do that? <br/>
+Different companies have different architecture and different learning algorithms like one company trained based on 2 char tokens or 1 char token or 1 word/token etc etc.based on that they have different vocabulary.
+
 **"Apple"**  ->  **[0.92, -0.14, 0.05, ...]**
 
 Computers don't understand **words**. They understand **numbers**. 
@@ -362,6 +408,8 @@ The challenge is: how do we turn a word into a list of numbers that captures its
 
 ### **Word Embeddings (The "Secret Sauce")**
 
+Basically transforming any words(tokens) to it in vector form is known as **Word Embedding**
+
 How do we turn a word like "Apple" into a number that captures its meaning?
 
 Instead of one number, we give each word a list of numbers (a vector).
@@ -369,6 +417,11 @@ Instead of one number, we give each word a list of numbers (a vector).
 `The Vector Representation ` of Word : "Apple" is [0.9 - color(red) , -0.1 shape(square), 0.05, ...]
 
 Each number represents a specific "dimension" of meaning.
+
+That's why we transform any word into word embedding. Now what we have instead of us passing just a word which is non-existing to a machine, we something in form of numbers and those numbers have meaning that what the word is composed of. And now the list of words(vectors) can be pass down to a machine. So we have a mapping between a words and its vectors and this vectors can be now pass down to computer as these are numbers and computers(machines) works really well with the numbers.
+
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/332543fe-709c-446b-993a-3f269b96201e" />
+
 
 ### **Dimensions of Meaning**
 
@@ -380,6 +433,16 @@ Each number represents a specific "dimension" of meaning.
 
 - "King" and "Queen" have similar numbers for royalty but vastly different values for gender.
 - This is how machines represent concepts as data.
+
+
+  We can see that these words make lot of sense as we make convert them in numbers (vectors). <br/>
+  But what we can do with these words being tranformed into vectors(numbers)? what happen now we got the meaning of word.
+
+  Assume there is a very big dimension(n-dimension of vector) space with difference of meaning, each dimesion contains different meaning.
+  Let's look in a simplified diagram of it.
+  - King and Queen are places closed to each other, closed to man and woman but apart from Apple and orange
+  - Man and Woman are placed closed to each other
+  - Apple and oranges are placed closed to each other 
 
 ### **Words as Positions in Space**
 - If a word is a list of numbers, it's a point on a map. **Similar words are close together**, while different words are far apart.
@@ -393,19 +456,52 @@ Each number represents a specific "dimension" of meaning.
 
 <img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/abf037a2-e23c-4775-95d7-8230fb8eac27" />
 
+
+This is how different word with different meaning and then these words transform to different vectors vectors has many dimension i.e. represented by numbers and each number has different meaning or direction like it can be gender, color, shape, size, it can be literally anything there are 100s of 1000s of dimension we can't even think of what kind of composition it can be of. But we can simplifies and understand it in 2D/3D that how it is happening.
+
 ### **The Magic of Embeddings - Word Math**
 `King − Man + Woman = Queen` <br/>
+what happen if we remove the gender Man and add the gender woman to king it will become Queen.
+- king and queen are royalty, similarly man and woman are gender.
+- What we are doing here is basic math add and subtract.
+
 `Paris − France + Italy = Rome`  <br/>
+Capital is paris if we have country france, if we replace country france to Italy the capital will become Rome
+ 
 `Walking − Walk + Swim = Swimming`  <br/>
+If we remove action verb walk and replace it with another action verb swim, it will be swimming
+
+This is what math does, and ended up opening a lot of doors for AI and in the field of ML. With this simple calculation we can understand different meaning of words on which d Machine is not even trainned on. Just based on the high dimesional matrixes and graphs we ended up learning compleletely new dimensions on which machine is not trained of. Learn a lot from the data triained on. 
+
+<img width="400" height="300" alt="image" src="https://github.com/user-attachments/assets/08daa373-c73e-42f8-8255-50296e1a30cb" />
 
 ### **Can Embeddings Solve Our Earlier Problems?**
+
+Still we have one single problem, look at these 2 sentences :
 
 "I went to the **bank** to deposit cash" <br/>
 "I sat on the **bank** of the river"
 
+like we have each word has a single vector attached to it but these vectors are not talking to each other. So "I" vector, "ewent" vector, "bank" vector they do not know about each other. 
+
 The Problem: In basic word embeddings, each word has exactly ONE position in space.
 
 The model can't distinguish between a financial institution and a riverbank because it doesn't look at the surrounding words.
+
+So basically Embedding only works on words It does classification very accurate and well. But sentences it doesn't work. But when it comes to talking or sentences bcuz it doesn't know what came before and what will came after.
+
+Even if know that Okay One vector knows I came after another vector and after me there is another vector then also the problem is still there bcuz It doesn't correlate the thing without us doing anything.
+
+So, the ideas is to process the whole sequence. <br/>
+if I have the whole sentence, I will process "Hi", "Hi My", "Hi My name" "Hi My name is", "Hi My name is Shiva" 
+
+This was the first idea the research started on it and the area of sequence models emerged and It has like different kind of Stuffs like RNN, SM, GRUs and transformer which is the most advanced model. 
+
+- Recurrent Neural network(RNN)
+- Long Short Term Memory (LSTM)Copy link
+- Gated Recurrent Units (GRU)
+- Sutskever’s model (SM)
+- TransformerCopy link
 
 </details>
 
@@ -414,24 +510,57 @@ The model can't distinguish between a financial institution and a riverbank beca
 
 <br/>
 
+Now we know that we can understand that we can know and undertstand meaning of a single word completely and some basic arithmetic operations like addition subtraction to it But what we can still not do is can't understand the complete sentence or form a sentence.
+What is the basic thing we can do here is : what if we process the sentences word by word since we know the meaning of each word  and somehow make a system which keeps the memory from these previous words and add these to upcoming words.
+
 Idea: Process the sentence one word at a time, building up understanding as you go.
 
-> "I"  <br/>
-> "I went"  <br/>
-> "I went to"  <br/>
-> "I went to the"  <br/>
-> "I went to the bank..."  <br/>
+> "I"  : `I vector fires up`<br/>
+> "I went" : `Here instead of fire up 2 vectors separately, we somehow comprise 2 vectors into 1 and that vector is fired up` <br/>
+> "I went to" : `vector comprises of I+went+to fire up` <br/>
+> "I went to the" : `vector comprises of I+went+to+the fire up` <br/>
+> "I went to the bank..."  : `vector comprises of I+went+to+the+bank fire up`<br/>
+
+Based on this can we solve something, yes!. <br/>
+As every word is getting added the meaning of it (which we derived from its vector i.e. numbers) is being added and what addes up at the end is ended up with a completely new vector which has a number. <br/>
+So basically solve the problem that now we have different vectors for the word **bank** now.
+
+This is how the origin of sequence models came in and we call then **Recurrent Neural Network**. Basically here, there is a concept of Recurrent here go, we're moving. This is an architecture which is based on Neural Network and We know that Neural Networks are the field which deals with Deep Learning, so we're learning about Deep Learning. 
+
+So these RNN what they do is basically word by word process something and from each word they maintain some memory.
+So here the context(meaning) of a word changes completely with upcoming words in a sentence.
 
 The model maintains a "memory" of what it has read so far.
 
-**The Problem: Forgetting**
+
+But as the sentences become longer, paragraph become longer and longer and story become longer. How much you can change the vector, how much you can remembers. This is an ever lasting problem of memory. You can't remember everything there would be a time when stuffs mess it up and your architecture and model blown off.
+
+### The Problem: Forgetting**
 
 `Long-Range Dependency Failure`
 > "**The cat**, which was sitting on the mat that I bought from the store near the old church on the corner, **was** happy."
 
+When the sequence model reach at "was", it forgetten what was the subject, bcuz problem is forgetting how many vectors it will remember by adding, the meaning will be completely disruppted when it will come to "was". This happens in all the big sentences for small It does work. 
+
+Unlike Tranformers (chatGPT), RNNs Sequential model has to remember each word like cat, mat, this that everything.
+
 By the time a sequence model reaches "was," it has often **forgotten** the subject at the beginning.
 
 RNNs struggle with long sentences because they process information linearly and have limited memory capacity.
+
+After 2012 and until 2017 we hd 4 things :
+1. Word Embeddings : How to understand words
+2. Sequence Models(RNNs) : How to understand sentence word by word (only smaller sentences but failed on longer bcuz memory forget the things due to sequential linear cause the data loss, at the end become so big that It forget what was the subject, verb)
+3. Tons of Internet Data
+4. Powerful GPUs
+
+This Field was stuck for few years a lot of things was happening something came after RNNs i.e LSTM they are put a gate for not important words in a sentence like "which" "is/am/are" now now model had options what to remember and what to not. So each word has a gate like do I have to remember this word or not. 
+
+So LSTM(Long Short Term Memory Models) which came after RNNs, only thing they improved on RNNs was they added a gate on each word and gave to choice either we have to add this word to memory or not like It will remeber Subject, Verb and Object and not remember which, that, etc etc.
+So in this case the information the word which has to be retained stored in memory is reduced surprisingly bcuz half of the words are not needed to be remembered bcuz they were not making sense to work or process them. 
+But we bring 10 times longer sentence same thing will happen to LSTM what happened to RNNs in a big sentence.
+
+That's happened with LSTM and then GMU came
 
 </details>
 
@@ -447,6 +576,11 @@ RNNs struggle with long sentences because they process information linearly and 
 > **The Word-by-Word Bottleneck** <br/>
 > Processing text sequentially was slow and models still "forgot" the beginning of long sentences.
 
+We have only one thing to solve that we don't have to forget. For that what best thing we can do is be very selective bcuz in a sentence there are 2 or 3 words which makes full sense for it. So if we retain those 2 or 3 words that's very good thing, we use as less memory as we can and retain only important words which make sense. This is what we have to solve in sequence Models.
+
+So what was happening in sequential models or RNNs or LSTM were that We were moving in linear fashion 1st word to last word and process each word by putting a gate to it whether retain it or not. This has 2 problems :
+1. Slow speed bcuz until we process first important word we can't process the second important word.
+2. Memory problem.
 
 What if there was a better way?
 
@@ -461,11 +595,24 @@ What if there was a better way?
 `The Old Way` : **Sequential** <br/>
 Process words one by one, like reading a book from start to finish.
 
+Do we do that as a human while reading a book? <br/>
+No, We as a human we just go through a sentences with our eyes and retain the best knowledge we can like Character name, whether it's villain or Hero doing crime or saving from crime. we just came through 1st page, and undertstand the second page which the Sequential Model can't bcuz they will read slow and also not retained the things so long.
+
+So what would be a new way? Can we make an architecture something like we process each word simulatenously independently and at the end correlate them to each other somehow and then will get the best output. So Sequence we're doing parallelly so fast and remeber 1 or 2 important words which make sense to get the meaning of the sentence
+
 `The New Way` : **Simultaneous** <br/>
 Look at every word in the sentence at the same time.
 
+That secret is **Attention**
+
 > **The Secret: Attention** <br/>
-> The model "attends" to the most relevant words, no matter how far apart they are.
+> Attention enable the model to "attends" the most relevant words, no matter how far apart they are.
+
+1. Simulatenously/parallely process the words which increases the speed
+2. Attention gives us most relevant words
+These two things alone made that a breakthrough what happen was now we can do things so fast, read so much information we have a lot of data we can train on and with that addition of attention now we don't care about memory It can be as long as we want we have models which sometime might forget but this method is 1000s time better than RNNs or LSTM. So Model has now infinite memory bcuz they're retaining only most relevant words based on every question We ask.
+
+We will see this Attention in detail when we see the Transformer Architecture.
 
 </details>
 
@@ -476,11 +623,15 @@ Look at every word in the sentence at the same time.
 
 `Processing the word "it"` : The **animal** didn't cross the street because **it** was too tired.
 
+Who was too tired? <br/>
+As a human -> We say Animal, bcuz our brain process it <br/>
+Machine -> ? : Similar to our brain what Transformer do here is process all words simulatenously(parallelly) and retain most relvant words which make sense to it. As it process the word it it highlight the most relevant word to "it" is animal. How does it do we will see it later. 
+
 When the model looks at the word **"it"**, the attention mechanism tells it to pay the most attention to **"animal"**.
 
 This is how the model "knows" what the pronoun refers to, building a context-aware representation of every word.
 
-**Same Structure, Different Attention**
+### **Same Structure, Different Attention**
 
 `Scenario A` : The **animal** didn't cross the street because **it** was too **tired**.
 
@@ -488,16 +639,40 @@ This is how the model "knows" what the pronoun refers to, building a context-awa
 
 By changing just one word (**tired** vs **wide**), the model's attention shifts, correctly identifying what "it" refers to in each context.
 
-**Why Attention Is Powerful**
+### **Why Attention Is Powerful**
 
 `1. No Forgetting` : **More Memory** <br/>
 Every word in a sentence "sees" every other word simultaneously, no matter how far apart they are.
 
+We're only selecting most relevant words which are just selecting 1% things of LSTM and LSTM were selecting 50% thing of RNNs. So we can see how much big gap from earlier models we created in terms of memory and what this allows us to make a very mathematical mapping  to every word, how it is related to every different word and how the meaning changes with every different word.
+
 `2. Speed` : **Parallel Processing** <br/>
 Unlike RNNs that read word-by-word, Transformers process all words at once, making training incredibly fast.
 
+
 `3. Context` : **Deep Understanding** <br/>
 The model builds a mathematical map of how every word relates to every other word in the specific context.
+
+
+If we look back to when it started where we have defined a set of rules if an object checks this rules then it is considered as intelligent. then after that we moved to statistical Model which was just doing classification no minute details or context then we moved to RNNs where word embedding, vectors mapping  and then LSTM where we added a gate to each words in RNNs and we reach to Transformer.
+We can also understand images by same architecture. 
+
+STORY TIME : FUNNY PHD STUDENTS <br/>
+Around 2016-17, a lot of Students who were working on AI and ML field Applications. Anyone was not sure that Transformer will boom and disrupt everything and it is going to be the go to source of intelligence. Everyone was doing their thesis on completely different things like someone was doing 3D Modelling or RNNs etc etc.  <br/>
+What happened is as soon as Transformer came up, it got a lot of attraction but people thought let's continue their own things but what happen in within 1-2 years the same Transformer architecture were applying to all these different fields and it completely disrrupted all the things what they developed over the years.  <br/>
+A single model, a single architecture was responsible for that. What allows to do that **Attention**. Bcuz if you look at thing everything a sequence like if we talk about images every pixel that come after a pixel is a sequence.
+
+If we pass a picture of beach and ask the model Can you describe the place? The model is smart enough to answer It will light up "beach" word. Just like human it would get glance at it and answer with the word "beach". how it is doing that? From the same context it undertstand the language (word or sentence).
+
+Similarly 3D Modeliing(basicallt It's sequence of different stuffs), Music/Audio(sequence of stuffs), Videos(sequence), images (sequence), sentences(sequence), words(sequence).
+
+If Our model i.e. Transformer Architecture is performing so well on the sequence words, can't it be perform well on the sequences of images or audios or videos. Yes It can.
+
+First we discovered on Languages but Now Trasformer is applied to every field.
+- For Images we have **Vision Transformer**, Defusion was eariler which was overtaked by **Defusion Transformer**
+- For Videos we have **Audio Transformer**
+
+ Transformer : An architecture which built entirely on the mechanism of Attention 
 
 </details>
 
